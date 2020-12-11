@@ -1,3 +1,4 @@
+// MENU TOGGLE
 $('header .menu-toggle').on('click', function(e){
 	e.preventDefault();
 	$(this).toggleClass('menu-close');
@@ -6,11 +7,13 @@ $('header .menu-toggle').on('click', function(e){
 	$('header .header-menu').fadeToggle();
 });
 
+// NAV MENU TOGGLE DORPDOWN
 $('.header-menu nav .nav-dropdown-link').on('click', function(e){
 	e.preventDefault();
 	$(this).toggleClass('active-dropdown');
 });
 
+// SERACH BOX TOGGLE
 $('.search-box button').on('click', function(e){
 	e.preventDefault();
 	if($(this).parent().hasClass('active') && $(this).prev().val() != ''){
@@ -20,6 +23,7 @@ $('.search-box button').on('click', function(e){
 	$(this).parent().toggleClass('active');
 });
 
+// CIRCLE TABS
 $('.circle-tabs').height($('.circle-tabs').innerWidth());
 let circleAngle = 0;
 let circleItems = 13
@@ -42,8 +46,9 @@ $('.circle-tabs .circle-tabs--item').each(function(){
 	circleAngle += 360 / circleItems;
 });
 
-
 $(document).ready(function(){
+  // TABS
+  // CIRCLE TABS
   $('.circle-tabs .circle-tabs--item:not(:first-of-type)').on('click', function(){
     let currentTab = $(this);
     if($('.services-content .active-tab').attr('data-tab') != currentTab.attr('data-tab')){
@@ -57,6 +62,7 @@ $(document).ready(function(){
     }
   });
 
+  // SOLUTIONS TABS
   $('.solutions-tabs [data-tab]').on('click', function(){
     let currentTab = $(this);
     if($('.solutions-tabs--content .active-tab').attr('data-tab') != currentTab.attr('data-tab')){
@@ -69,16 +75,15 @@ $(document).ready(function(){
       });
     }
   });
-});
 
-$(document).ready(function(){
+  // CAROUSEL CLIENTS
   $('.carousel-clients').slick({
     infinite: true,
-  	slidesToShow: 4,
-  	slidesToScroll: 4,
-  	prevArrow: '<div class="slick-custom-prev"><i class="fa fa-angle-left"></i></div>',
-  	nextArrow: '<div class="slick-custom-next"><i class="fa fa-angle-right"></i></div>',
-  	responsive: [
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    prevArrow: '<div class="slick-custom-prev"><i class="fa fa-angle-left"></i></div>',
+    nextArrow: '<div class="slick-custom-next"><i class="fa fa-angle-right"></i></div>',
+    responsive: [
       {
         breakpoint: 1024,
         settings: {
@@ -105,6 +110,7 @@ $(document).ready(function(){
     ]
   });
 
+  // CAROUSEL BLOGSY
   $('.carousel-blogsy').slick({
     infinite: true,
     slidesToShow: 1,
@@ -114,4 +120,10 @@ $(document).ready(function(){
   });
 });
 
+// INPUT FILE TRIGGER
+$('.contact-us-form form .btn-file').on('click', function(){
+  $(this).siblings('[type="file"]').trigger('click');
+});
+
+// FAKE SELECT PLUGIN
 $('[data-fake]').fakeSelect();
