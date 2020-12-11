@@ -497,6 +497,10 @@ section .container > h2 {
     font-weight: 600;
 }
 
+.contact-us .contact-us--content a:hover {
+    background: white;
+}
+
 .counter {
     background-color: #0f2a31;
 }
@@ -751,6 +755,11 @@ section .container > h2 {
     margin-top: 5px;
 }
 
+.carousel-blogsy .carousel-blogsy--item a:hover, .blogsy .blogsy--card a:hover {
+    background: #00262e;
+    color: white;
+}
+
 .blogsy .blogsy--card h2 {
     font-size: 25px;
     color: black;
@@ -845,6 +854,7 @@ footer .footer-menu a {
     display: block;
     letter-spacing: 1px;
     margin-bottom: 10px;
+    transition: 0.3s;
 }
 
 footer .footer-menu .footer--title {
@@ -865,6 +875,10 @@ footer .footer-menu a.footer--sub-title {
 
 footer .footer-menu a:not(.footer--title):not(.footer--sub-title) {
     margin-bottom: 17px;
+}
+
+footer .footer-menu a:hover {
+    color: #000000;
 }
 
 footer .footer--grid{
@@ -917,4 +931,9 @@ footer .footer--grid .footer-col:nth-of-type(8){grid-area: h;}
     .synapcom-banner .synapcom-banner--logo {margin: 2rem 0 0 0!important;}
     .services .service-title img{margin-right: 20px;}
     .solutions .solutions-tabs--content{transform: translateX(0);}
+}
+
+a.btn-dark-hover:hover, input.btn-dark-hover:hover {
+    background-color: #148fb0;
+    color: white;
 }
