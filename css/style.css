@@ -266,11 +266,11 @@ section .container > h2 {
     transition: 0.3s;
 }
 
-.solutions .solutions-tabs .active-tab {
+.solutions .solutions-tabs h4:hover, .solutions .solutions-tabs .active-tab {
     color: #16b3c7;
 }
 
-.solutions .solutions-tabs .active-tab img {
+.solutions .solutions-tabs h4:hover img, .solutions .solutions-tabs .active-tab img {
     filter: hue-rotate(-15deg) brightness(3);
 }
 
