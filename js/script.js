@@ -66,6 +66,7 @@ $(document).ready(function(){
   $('.solutions-tabs [data-tab]').on('click', function(){
     let currentTab = $(this);
     if($('.solutions-tabs--content .active-tab').attr('data-tab') != currentTab.attr('data-tab')){
+      $('.solutions-tabs--content ,solutions-tabs--content').attr('data-active', currentTab.attr('data-tab'));
       $('.solutions-tabs--content .active-tab').fadeOut(function(){
         $(this).removeClass('active-tab');
         $('.solutions-tabs .active-tab').removeClass('active-tab');
@@ -77,47 +78,50 @@ $(document).ready(function(){
   });
 
   // CAROUSEL CLIENTS
-  $('.carousel-clients').slick({
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    prevArrow: '<div class="slick-custom-prev"><i class="fa fa-angle-left"></i></div>',
-    nextArrow: '<div class="slick-custom-next"><i class="fa fa-angle-right"></i></div>',
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
+  try{
+    $('.carousel-clients').slick({
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      prevArrow: '<div class="slick-custom-prev"><i class="fa fa-angle-left"></i></div>',
+      nextArrow: '<div class="slick-custom-next"><i class="fa fa-angle-right"></i></div>',
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
         }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  });
+      ]
+    });
 
-  // CAROUSEL BLOGSY
-  $('.carousel-blogsy').slick({
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: true
-  });
+    // CAROUSEL BLOGSY
+    $('.carousel-blogsy').slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: true
+    });
+  }
+  catch{}
 });
 
 // INPUT FILE TRIGGER
@@ -125,5 +129,31 @@ $('.contact-us-form form .btn-file').on('click', function(){
   $(this).siblings('[type="file"]').trigger('click');
 });
 
-// FAKE SELECT PLUGIN
-$('[data-fake]').fakeSelect();
+function blogsyPagination(){
+  $('.paginationjs li:not(.disabled):not(.active)').on('click', function(){
+    let selectedPage = $(this).attr('data-num');
+    let currentPage = $('.blogsy--pages .blogsy--card.active-page');
+    if(selectedPage == parseInt(currentPage.attr('data-page'))){
+      return false;
+    }
+    $('.blogsy--pagination').addClass('wait');
+    currentPage.fadeOut(function(){
+      $(`.blogsy--pages .blogsy--card[data-page="${selectedPage}"]`).fadeIn(function(){
+        $('.blogsy--pagination').removeClass('wait');
+      });
+      $(`.blogsy--pages .blogsy--card[data-page="${selectedPage}"]`).addClass('active-page');
+      $(this).removeClass('active-page');
+    });
+  });
+}
+
+$('.our-clients .our-clients-case .our-clients-logo').on('mouseover', function(){
+  let currentCard = $(this).attr('data-card');
+  $(`.our-clients .our-clients-card[data-card="${currentCard}"]`).css('top', `${parseInt($(this).offset().top) + $(this).height() + 30}px`);
+  $(`.our-clients .our-clients-card[data-card="${currentCard}"]`).fadeIn('fast');
+});
+
+$('.our-clients .our-clients-case .our-clients-logo').on('mouseout', function(){
+  let currentCard = $(this).attr('data-card');
+  $(`.our-clients .our-clients-card[data-card="${currentCard}"]`).fadeOut('fast');
+});
